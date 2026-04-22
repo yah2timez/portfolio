@@ -1,1 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Embedded Function Generator | Yahya Abdullah</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <h1>Embedded Function Generator</h1>
+    <p><a href="index.html">Back to Portfolio</a></p>
+  </header>
 
+  <main>
+    <section>
+      <p>Designed and validated a Teensy 4.1-based function generator with digital control of waveform, frequency, and amplitude, plus a custom 4-layer PCB and enclosure-ready layout.</p>
+    </section>
+
+    <section>
+      <h2>Overview</h2>
+      <p>
+        Built a digitally controlled function generator around a Teensy 4.1 for a microprocessor system design project.
+        The system used an AD9833 waveform generator, MCP4132 digital potentiometer, MCP4725 DAC, TL074 op amp stages,
+        and an LMC7660 voltage converter to generate and condition output signals. A 4x4 keypad and 20x4 LCD allowed
+        users to change settings directly from the device.
+      </p>
+    </section>
+
+    <section>
+      <h2>What It Did</h2>
+      <ul>
+        <li>Generated sine, square, and triangle waveforms</li>
+        <li>Allowed digital control of waveform, frequency, and amplitude</li>
+        <li>Reached measured frequencies from 1 Hz to 250 kHz</li>
+        <li>Reached measured amplitudes from about 600 mV p-p to 5 V p-p</li>
+        <li>Used oscilloscope measurements to verify output behavior across multiple settings</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>System Architecture</h2>
+      <p>
+        The design used the AD9833 as the waveform source, the MCP4132 digital potentiometer for amplitude control,
+        the MCP4725 DAC for offset generation, and TL074 op amp stages for signal summing and conditioning. The circuit
+        also used an LMC7660 with capacitors to create the negative rail needed by the op amp stage. User input came
+        from a 4x4 membrane keypad connected to Teensy pins 2 through 9, and feedback was shown on a 20x4 LCD.
+      </p>
+    </section>
+
+    <section>
+      <h2>Design Decisions</h2>
+      <p>
+        We used header pins so the keypad, LCD, and signal modules could be connected more easily during integration and test.
+        I also added screw terminals for external power and oscilloscope access at the final output stage. The PCB used a
+        4-layer stackup with signal traces on the first layer, a ground plane on the second, and power traces on the third.
+      </p>
+    </section>
+
+    <section>
+      <h2>Testing and Results</h2>
+      <p>
+        We validated the design with oscilloscope measurements across multiple frequencies, amplitudes, and waveform modes.
+        The circuit produced sine, square, and triangle waves, and demonstrated operation from 1 Hz up to 250 kHz.
+        Measured output examples included 100 Hz, 1 kHz, 100 kHz, and 250 kHz cases, with amplitudes ranging from
+        about 600 mV p-p to 5 V p-p.
+      </p>
+    </section>
+
+    <section>
+      <h2>Problems and Fixes</h2>
+      <p>
+        The DAC-based offset stage was not fully integrated at presentation time because of a voltage mismatch with the circuit.
+        As a workaround path, I evaluated using a filtered PWM signal from the Teensy as an alternative offset source.
+        I also ran into a PCB manufacturing issue when JLCPCB flagged the board outline because the edge cuts did not match
+        the copper area correctly. After reviewing feedback and resubmitting files, the board moved into production.
+      </p>
+    </section>
+
+    <section>
+      <h2>Code and Control Logic</h2>
+      <p>
+        The firmware handled keypad input, updated the LCD, switched waveform modes, adjusted frequency through the AD9833,
+        changed amplitude through the MCP4132, and controlled offset through the MCP4725. The code mapped user commands
+        into device settings and updated the display in real time.
+      </p>
+    </section>
+
+    <section>
+      <h2>What I Learned</h2>
+      <p>
+        This project forced me to work across embedded control, analog signal conditioning, user interface logic, PCB design,
+        and hardware validation. It also showed where design assumptions break during integration, especially around voltage
+        compatibility and board manufacturing constraints.
+      </p>
+    </section>
+
+    <section>
+      <h2>Gallery</h2>
+      <img src="images/function-generator-system.jpg" alt="Full system photo" />
+      <img src="images/function-generator-schematic.png" alt="Schematic" />
+      <img src="images/function-generator-pcb.png" alt="PCB layout" />
+      <img src="images/function-generator-3d.png" alt="3D PCB model" />
+      <img src="images/function-generator-scope1.jpg" alt="Oscilloscope capture 1" />
+      <img src="images/function-generator-scope2.jpg" alt="Oscilloscope capture 2" />
+    </section>
+
+    <section>
+      <h2>GitHub</h2>
+      <p><a href="https://github.com/yah2timez">View source code</a></p>
+    </section>
+  </main>
+</body>
+</html>
